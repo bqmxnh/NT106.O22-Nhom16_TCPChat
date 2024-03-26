@@ -1,7 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 namespace TCPChatServer
 {
     public partial class ServerForm : Form
     {
+        // Form đóng bởi người dùng 
+        private bool isClosingByButton = false;
         public ServerForm()
         {
             InitializeComponent();
@@ -17,9 +26,14 @@ namespace TCPChatServer
 
         }
 
-        private void ServerForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void ServerForm_FormClosing(object? sender, FormClosingEventArgs e)
         {
-
+            isClosingByButton = e.CloseReason == CloseReason.UserClosing;
+            if (isClosingByButton)
+            {
+                Application.Exit();
+                Environment.Exit(0);
+            }
         }
     }
 }
