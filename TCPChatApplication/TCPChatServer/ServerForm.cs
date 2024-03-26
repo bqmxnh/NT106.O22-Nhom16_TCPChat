@@ -93,7 +93,7 @@ namespace TCPChatServer
                     if (c != tcpClient)
                     {
                         NetworkStream stream = c.GetStream();
-                        byte[] broadcastMessage = Encoding.UTF8.GetBytes(receivedMessage + Environment.NewLine);
+                        byte[] broadcastMessage = Encoding.UTF8.GetBytes(receivedMessage);
                         stream.Write(broadcastMessage, 0, broadcastMessage.Length);
                         stream.Flush();
                     }

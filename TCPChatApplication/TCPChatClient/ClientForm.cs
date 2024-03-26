@@ -65,7 +65,6 @@ namespace TCPChatClient
             }
         }
         // Nhận tin nhắn từ máy chủ. Nó luôn lắng nghe cho đến khi máy khách được ngắt kết nối hoặc có lỗi xảy ra. Mỗi khi nhận được một tin nhắn từ máy chủ, nó cập nhật hộp văn bản chat trên giao diện người dùng.
-        // Nhận tin nhắn từ máy chủ.
         private void ReceiveMessages()
         {
             while (isConnected && stream != null)
@@ -87,9 +86,8 @@ namespace TCPChatClient
                     Console.WriteLine("Disconnected from server.");
                     break;
                 }
-
                 string message = Encoding.UTF8.GetString(data, 0, bytesRead);
-                UpdateChatBox(message); // Di chuyển dòng này ra ngoài if để không cập nhật thời gian hai lần
+                UpdateChatBox(message); 
             }
         }
         // Cập nhật nội dung hộp văn bản chat trên giao diện người dùng.
